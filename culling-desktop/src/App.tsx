@@ -23,6 +23,7 @@ import {
   Sliders,
   Check
 } from 'lucide-react';
+import logoImg from './assets/logo.png';
 import './App.css';
 
 interface PhotoItem {
@@ -382,7 +383,7 @@ export default function App() {
       >
         <div className="splash-content">
           <div className="splash-logo-wrapper">
-            <img src="/logo.png" alt="Select EA" className="splash-logo-img" />
+            <img src={logoImg} alt="Select EA" className="splash-logo-img" />
             <div className="splash-rec-pulse" />
           </div>
           <h1 className="splash-title">
@@ -398,7 +399,7 @@ export default function App() {
       {/* Header Superior Principal */}
       <header className="app-header">
         <div className="brand-section">
-          <img src="/logo.png" alt="Select EA" className="brand-logo-icon" />
+          <img src={logoImg} alt="Select EA" className="brand-logo-icon" />
           <span className="brand-title">
             SELECT <span style={{ color: 'var(--accent-red)' }}>EA</span>
             <span className="brand-rec-dot" />

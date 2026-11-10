@@ -102,7 +102,8 @@ function createWindow() {
     height: 900,
     minWidth: 1024,
     minHeight: 700,
-    backgroundColor: '#0a0b0f',
+    backgroundColor: '#08090d',
+    show: false, // Evita qualquer flash de tela cinza ou em branco
     title: 'Select EA',
     icon: path.join(__dirname, 'icon.ico'),
     webPreferences: {
@@ -113,9 +114,15 @@ function createWindow() {
     }
   });
 
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show();
+  });
+
   const isDev = process.env.NODE_ENV === 'development';
   if (isDev) {
-    mainWindow.loadURL('http://localhost:5173');
+    mainWindow.loadURL('http://localhost:5173').catch(() => {
+      mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
+    });
   } else {
     mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
   }
