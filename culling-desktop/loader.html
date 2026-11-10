@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Select EA - Inicializando</title>
+  <HTA:APPLICATION
+    ID="SelectEALoader"
+    APPLICATIONNAME="Select EA Loader"
+    BORDER="none"
+    BORDERSTYLE="normal"
+    CAPTION="no"
+    SHOWINTASKBAR="yes"
+    SINGLEINSTANCE="yes"
+    SYSMENU="no"
+    WINDOWSTATE="normal"
+    SCROLL="no"
+  />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at center, #151822 0%, #06070a 100%);
+      color: #fff;
+      font-family: 'Segoe UI', -apple-system, sans-serif;
+      width: 440px;
+      height: 280px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #232838;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      user-select: none;
+    }
+    .logo-box {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      margin-bottom: 12px;
+    }
+    .logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 16px rgba(250, 1, 34, 0.5));
+    }
+    .rec-dot {
+      position: absolute;
+      top: 18px;
+      right: 14px;
+      width: 12px;
+      height: 12px;
+      background: #fa0122;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #fa0122;
+      animation: pulse 1s infinite alternate;
+    }
+    .app-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+    }
+    .app-title span { color: #fa0122; }
+    .status-text {
+      font-size: 11px;
+      color: #9ea5bd;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+    .progress-bar {
+      width: 260px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 2px;
+      overflow: hidden;
+      position: relative;
+    }
+    .progress-fill {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      width: 100%;
+      background: linear-gradient(90deg, #fa0122, #ff4d63);
+      animation: slide 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+      box-shadow: 0 0 8px #fa0122;
+    }
+    @keyframes pulse {
+      from { transform: scale(0.9); opacity: 0.8; }
+      to { transform: scale(1.2); opacity: 1; }
+    }
+    @keyframes slide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+  </style>
+  <script>
+    window.resizeTo(440, 280);
+    window.moveTo((screen.width - 440) / 2, (screen.height - 280) / 2);
+  </script>
+</head>
+<body>
+  <div class="logo-box">
+    <img src="public/logo.png" class="logo-img" alt="Select EA" />
+    <div class="rec-dot"></div>
+  </div>
+  <div class="app-title">SELECT <span>EA</span></div>
+  <div class="status-text" id="status">Preparando o estúdio de fotos...</div>
+  <div class="progress-bar">
+    <div class="progress-fill"></div>
+  </div>
+</body>
+</html>
