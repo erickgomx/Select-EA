@@ -1,0 +1,154 @@
+================================================================================
+                           SELECT EA - GUIA E MANUAL DO USUARIO
+                    Estudio de Selecao e Curadoria Inteligente de Fotos
+================================================================================
+
+1. APRESENTACAO
+--------------------------------------------------------------------------------
+O Select EA foi projetado especificamente para fotografos profissionais de 
+casamentos, ensaios, eventos e retratos. Ele resolve o gargalo de triar milhares 
+de arquivos brutos (RAW), lendo as fotos quase instantaneamente (~6ms por preview) 
+e utilizando Inteligencia Artificial local para avaliar foco nos olhos, piscadas, 
+sorrisos, poses intimas e eleger a melhor foto de cada rajada (Top Pick).
+
+Zero nuvem. Seus arquivos nunca saem do seu computador.
+
+
+2. COMO INICIAR O APLICATIVO
+--------------------------------------------------------------------------------
+Existem tres formas simples de abrir o programa:
+
+A) EXECUTAVEL DIRETO (Mais Rapido):
+   - Basta dar duplo clique no arquivo: "Select EA.exe" (ou "Select-EA-Portable.exe").
+   - O aplicativo e 100% autonomo: NAO exige instalacao de Python, Node.js ou 
+     qualquer programa adicional.
+
+B) ATALHO NA AREA DE TRABALHO:
+   - Para ter o icone oficial na sua Area de Trabalho, execute o arquivo:
+     "CRIAR_ATALHO_AREA_DE_TRABALHO.bat"
+   - Ele cria automaticamente um atalho configurado para a pasta atual (mesmo em 
+     unidades diferentes como C:, D:, F: ou pendrives).
+
+C) PELO INICIADOR:
+   - Voce tambem pode iniciar dando duplo clique em: "INICIAR_APP.bat".
+
+
+3. FLUXO DE TRABALHO PASSO A PASSO
+--------------------------------------------------------------------------------
+PASSO 1: SELECIONAR A PASTA DE FOTOS
+- Clique no botao "Abrir Pasta" no topo esquerdo.
+- Selecione a pasta que contem as fotos do ensaio ou evento.
+- Formatos suportados: 
+  * RAWs de camera: Sony (.ARW), Canon (.CR2, .CR3), Nikon (.NEF), DNG, Fuji (.RAF)
+  * Imagens padrao: .JPG, .JPEG, .PNG, .WEBP, .TIFF
+
+PASSO 2: EXECUTAR A CURADORIA POR INTELIGENCIA ARTIFICIAL
+- Clique no botao "Analisar com IA" no topo direito.
+- A barra de progresso indicara o processamento foto a foto.
+- O motor de IA ira:
+  * Agrupar automaticamente fotos tiradas em sequencia/rajada (mesmo cenario).
+  * Encontrar todos os rostos e calcular o micro-contraste e nitidez real nos olhos.
+  * Detectar piscadas e separar de poses intencionais (beijo, oracao, abraco).
+  * Avaliar expressao facial e presenca de sorrisos.
+  * Eleger automaticamente a foto campea de cada rajada (marcada como "Top Pick").
+
+PASSO 3: NAVEGAR E REVISAR A SELECAO
+- Use a barra de filtros no topo para filtrar rapidamente por:
+  * Todas as Fotos
+  * Apenas Top Picks (recomendadas)
+  * Fotos Aprovadas (classificadas)
+  * Fotos com Olhos Fechados / Piscadas acidentais
+- Modifique as estrelas e cores conforme sua preferencia usando o teclado ou mouse.
+
+PASSO 4: INTEGRACAO COM ADOBE LIGHTROOM / CAMERA RAW / BRIDGE
+- O Select EA grava automaticamente sidecars ".xmp" ao lado de cada foto analisada.
+- Quando voce importar as fotos no Adobe Lightroom Classic, Camera Raw ou Bridge, 
+  as classificacoes de estrelas (1 a 5) e etiquetas de cor (Verde, Vermelho, etc.) 
+  ja estarao preenchidas exatamente como voce definiu!
+- Se as fotos ja estavam abertas no Lightroom, clique na pasta com o botao direito 
+  no Lightroom e selecione "Ler Metadados dos Arquivos".
+
+PASSO 5: COPIAR SELECAO (OPCIONAL)
+- Voce tambem pode clicar no botao "Copiar Aprovadas" para criar uma nova pasta 
+  (ex: "_SELECIONADAS") contendo apenas os arquivos aprovados para tratamento.
+
+
+4. MODOS DE VISUALIZACAO (TECLAS DE ATALHO)
+--------------------------------------------------------------------------------
+O Select EA possui 4 modos de exibicao pensados para cada momento da triagem:
+
+[G] MODO GRADE (Grid View):
+    Visualizacao panoramica de todas as fotos em grade virtual de alta velocidade.
+    Use o controle deslizante no topo para escolher entre 2 e 6 colunas.
+
+[S] MODO PAINEL DIVIDIDO (Split View):
+    Grade na lateral esquerda e foto principal ampliada na lateral direita, 
+    com o Face Strip (faixa com zoom automatico no rosto de cada pessoa).
+
+[C] MODO COMPARADOR LADO A LADO (Compare View):
+    Exibe a foto atualmente selecionada lado a lado com a foto "Top Pick" 
+    daquela mesma rajada, facilitando decidir o descarte em meio segundo.
+
+[L] MODO LOUPE / TELA CHEIA (Loupe View):
+    Foco total na foto em alta resolucao, ideal para inspecionar pequenos detalhes.
+
+
+5. TABELA DE ATALHOS RAPIDOS DO TECLADO
+--------------------------------------------------------------------------------
+Navegacao:
+  Seta para a Direita [ -> ] : Proxima foto
+  Seta para a Esquerda [ <- ] : Foto anterior
+  Barra de Espaco            : Alternar Zoom 100% / Ajustar a tela
+
+Classificacao por Estrelas:
+  [ 1 ] : 1 Estrela (Rejeitada)
+  [ 2 ] : 2 Estrelas
+  [ 3 ] : 3 Estrelas
+  [ 4 ] : 4 Estrelas
+  [ 5 ] : 5 Estrelas (Aprovada)
+  [ 0 ] ou [ U ] : Limpar classificacao
+
+Classificacao Rapida Pro:
+  [ P ] : Pick / Top Pick (Atribui 5 Estrelas + Etiqueta Verde)
+  [ X ] : Reject / Rejeitada (Atribui 1 Estrela + Etiqueta Vermelha)
+
+Etiquetas de Cor XMP:
+  [ 6 ] : Vermelho
+  [ 7 ] : Amarelo
+  [ 8 ] : Verde
+  [ 9 ] : Azul
+
+Modos de Tela:
+  [ G ] : Modo Grade
+  [ S ] : Modo Dividido (Split)
+  [ C ] : Modo Comparador
+  [ L ] : Modo Loupe (Tela Cheia)
+
+
+6. PERGUNTAS FREQUENTES & RESOLUCAO DE DUVIDAS (FAQ)
+--------------------------------------------------------------------------------
+P: O Windows exibiu a tela azul "O Windows protegeu o seu computador" (SmartScreen)?
+R: Isso e normal em executaveis portateis recem-baixados da internet que nao possuem 
+   um certificado corporativo pago. Para abrir normalmente:
+   1. Clique no texto sublinhado: "Mais informacoes".
+   2. Clique no botao: "Executar assim mesmo".
+   O aplicativo abrira sem problemas e o Windows lembrara da sua autorizacao.
+
+P: O aplicativo precisa de internet para funcionar?
+R: Nao! O Select EA funciona 100% offline. A Inteligencia Artificial e os modelos 
+   de visao computacional rodam diretamente na sua placa de video e processador.
+
+P: Mudei a pasta do Select EA de lugar ou passei para outro computador. O que fazer?
+R: Basta dar duplo clique no arquivo "CRIAR_ATALHO_AREA_DE_TRABALHO.bat" na nova 
+   pasta. Ele atualizara os atalhos automaticamente com os caminhos corretos e 
+   com a logomarca oficial.
+
+P: O Select EA altera ou estraga meus arquivos RAW originais?
+R: Nunca. O Select EA opera de forma 100% nao-destrutiva. Ele apenas le os previews 
+   dos arquivos e grava as classificacoes em arquivos de texto auxiliares (.xmp), 
+   seguindo o padrao internacional da Adobe.
+
+
+================================================================================
+Desenvolvido por Erick Gomes • Select EA © 2026
+================================================================================
