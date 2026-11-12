@@ -234,6 +234,39 @@ def analyze_photo(detector, file_path: str):
             'dHash': dhash_val
         }
 
+def get_model_path(model_arg: str) -> Path:
+    p = Path(model_arg)
+    if p.is_absolute() and p.exists():
+        return p
+
+    candidates = []
+    if getattr(sys, 'frozen', False):
+        meipass = getattr(sys, '_MEIPASS', None)
+        if meipass:
+            candidates.append(Path(meipass) / model_arg)
+            candidates.append(Path(meipass) / "models" / Path(model_arg).name)
+            candidates.append(Path(meipass) / Path(model_arg).name)
+        exe_dir = Path(sys.executable).resolve().parent
+        candidates.append(exe_dir / model_arg)
+        candidates.append(exe_dir / "models" / Path(model_arg).name)
+        candidates.append(exe_dir / Path(model_arg).name)
+
+    try:
+        script_dir = Path(__file__).resolve().parent
+        candidates.append(script_dir / model_arg)
+        candidates.append(script_dir / "models" / Path(model_arg).name)
+    except Exception:
+        pass
+
+    candidates.append(Path.cwd() / model_arg)
+    candidates.append(Path.cwd() / "models" / Path(model_arg).name)
+
+    for cand in candidates:
+        if cand.exists():
+            return cand
+
+    return candidates[0] if candidates else Path(model_arg)
+
 def main():
     parser = argparse.ArgumentParser(description="AI Culling Worker v2")
     parser.add_argument("--dir", required=True, help="Diretório de fotos")
@@ -246,9 +279,7 @@ def main():
         print(json.dumps({"error": "Directory does not exist"}))
         return
 
-    model_path = Path(args.model)
-    if not model_path.is_absolute():
-        model_path = Path(__file__).parent / args.model
+    model_path = get_model_path(args.model)
 
     detector = cv2.FaceDetectorYN.create(str(model_path), "", (640, 640), score_threshold=0.6)
 

@@ -304,12 +304,32 @@ ipcMain.handle('fs:export-selected', async (_, { sourceDir, photoPaths }) => {
   }
 });
 
-// Execução do Motor de IA Real em Python
+// Execução do Motor de IA Real (Executável Standalone ou Python)
 ipcMain.handle('ai:run-analysis', async (_, dirPath) => {
   return new Promise((resolve) => {
-    const pythonScript = path.join(__dirname, '../ai_worker.py');
     const tempOutputFile = path.join(app.getPath('temp'), `culling_results_${Date.now()}.json`);
-    const child = spawn('python', [pythonScript, '--dir', dirPath, '--output', tempOutputFile]);
+    
+    // Procura o executável standalone compilado (sem necessidade de Python no PC do usuário)
+    const candidates = [
+      path.join(process.resourcesPath || '', 'ai_worker.exe'),
+      path.join(process.resourcesPath || '', 'bin', 'ai_worker.exe'),
+      path.join(__dirname, '../ai_worker.exe'),
+      path.join(__dirname, '../../ai_worker.exe'),
+      path.join(app.getAppPath(), 'ai_worker.exe'),
+      path.join(app.getAppPath(), '..', 'ai_worker.exe')
+    ];
+
+    let workerExe = candidates.find(p => p && fs.existsSync(p));
+    let child;
+
+    if (workerExe) {
+      console.log('[AI Engine] Utilizando motor nativo embutido:', workerExe);
+      child = spawn(workerExe, ['--dir', dirPath, '--output', tempOutputFile]);
+    } else {
+      console.log('[AI Engine] Executável compilado não encontrado. Tentando Python do sistema...');
+      const pythonScript = path.join(__dirname, '../ai_worker.py');
+      child = spawn('python', [pythonScript, '--dir', dirPath, '--output', tempOutputFile]);
+    }
 
     let errorOutput = '';
 

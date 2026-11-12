@@ -88,14 +88,16 @@ A IA mede a proporção dos cantos da boca em relação à distância interpupil
 
 ## 🚀 Como Executar
 
-### Opção 1: Inicialização em 1 Clique (Zero Terminal)
-Basta dar duplo clique em:
-* **`Select EA.lnk`** (Atalho com ícone oficial na raiz)
-* ou **`INICIAR_APP.bat`** (Inicia o motor gráfico e fecha a tela preta instantaneamente).
+### Opção 1: Executável Autônomo / Portátil (Recomendado - Zero Instalação)
+* **`Select EA.exe`**: Executável 100% autônomo com o ícone oficial embutido no arquivo. Não requer Node.js, não requer Python e funciona em qualquer versão moderna do Windows (64-bit).
+* **`INICIAR_APP.bat`**: Lança o Select EA diretamente sem manter janela de terminal aberta.
+* **`CRIAR_ATALHO_AREA_DE_TRABALHO.bat`**: Cria na hora um atalho na sua Área de Trabalho com a logomarca oficial e caminho dinâmico para a pasta atual (mesmo em pendrives ou unidades diferentes).
 
-> **Nota:** Se executado em um computador que ainda não possui as dependências instaladas, o Select EA abre automaticamente uma **janela visual de carregamento animada**, instala os módulos silenciosamente e abre o estúdio logo em seguida.
+### Opção 2: IA 100% Embutida (Sem Dependência de Python)
+O Select EA agora inclui o binário nativo **`ai_worker.exe`** pré-compilado via PyInstaller, com o modelo neural `yunet.onnx`, OpenCV e runtime de visão computacional embutidos. 
+> **Zero Configuração:** Você não precisa instalar Python, bibliotecas ou gerenciar ambientes virtuais no computador do usuário.
 
-### Opção 2: Modo Desenvolvedor
+### Opção 3: Modo Desenvolvedor
 ```bash
 # Clone o repositório
 git clone https://github.com/erickgomx/Select-EA.git
@@ -106,6 +108,9 @@ npm install
 
 # Inicie o ambiente de desenvolvimento
 npm run electron:dev
+
+# Para compilar um executável portátil independente:
+npm run electron:portable
 ```
 
 ---
