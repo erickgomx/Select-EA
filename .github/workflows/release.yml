@@ -1,0 +1,59 @@
+name: Build & Release Select EA
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install opencv-python numpy onnxruntime pyinstaller pillow
+
+      - name: Compile AI Worker Binary
+        working-directory: culling-desktop
+        run: |
+          python -m PyInstaller --noconfirm --clean --onefile --noconsole --name "ai_worker" --add-data "models/yunet.onnx;models" --icon "electron/icon.ico" ai_worker.py
+          copy dist\ai_worker.exe ai_worker.exe
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: culling-desktop/package-lock.json
+
+      - name: Install Node Dependencies
+        working-directory: culling-desktop
+        run: npm ci
+
+      - name: Build Portable Windows Executable
+        working-directory: culling-desktop
+        run: npm run electron:portable
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: culling-desktop/release/Select-EA-Portable.exe
+          draft: false
+          prerelease: false
+          generate_release_notes: true

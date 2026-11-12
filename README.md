@@ -88,14 +88,16 @@ A IA mede a proporção dos cantos da boca em relação à distância interpupil
 
 ## 🚀 Como Executar
 
-### Opção 1: Executável Autônomo / Portátil (Recomendado - Zero Instalação)
-* **`Select EA.exe`**: Executável 100% autônomo com o ícone oficial embutido no arquivo. Não requer Node.js, não requer Python e funciona em qualquer versão moderna do Windows (64-bit).
-* **`INICIAR_APP.bat`**: Lança o Select EA diretamente sem manter janela de terminal aberta.
-* **`CRIAR_ATALHO_AREA_DE_TRABALHO.bat`**: Cria na hora um atalho na sua Área de Trabalho com a logomarca oficial e caminho dinâmico para a pasta atual (mesmo em pendrives ou unidades diferentes).
+### Opção 1: Executável Autônomo Oficial (Recomendado para Usuários Finais)
+* Baixe a versão mais recente em [**GitHub Releases**](https://github.com/erickgomx/Select-EA/releases).
+* Baixe o arquivo **`Select-EA-Portable.exe`** e execute diretamente.
+* **100% Autônomo:** Não requer instalação de Node.js nem de Python. O motor de visão computacional e a interface estão totalmente embutidos.
 
-### Opção 2: IA 100% Embutida (Sem Dependência de Python)
-O Select EA agora inclui o binário nativo **`ai_worker.exe`** pré-compilado via PyInstaller, com o modelo neural `yunet.onnx`, OpenCV e runtime de visão computacional embutidos. 
-> **Zero Configuração:** Você não precisa instalar Python, bibliotecas ou gerenciar ambientes virtuais no computador do usuário.
+### Opção 2: A partir do Repositório (Desenvolvedores ou Pasta Local)
+Se você baixou o código-fonte em ZIP ou clonou o repositório:
+* **`INICIAR_APP.bat`**: Inicia o Select EA imediatamente de forma silenciosa.
+* **`CRIAR_ATALHO_AREA_DE_TRABALHO.bat`**: Cria na hora um atalho na Área de Trabalho com a logomarca oficial e caminho dinâmico para a pasta atual (funciona mesmo em pendrives).
+* **`COMPILAR_EXECUTAVEL.bat`**: Compila em 1 clique o executável portátil autônomo `Select EA.exe` na raiz da pasta.
 
 ### Opção 3: Modo Desenvolvedor
 ```bash
@@ -109,7 +111,7 @@ npm install
 # Inicie o ambiente de desenvolvimento
 npm run electron:dev
 
-# Para compilar um executável portátil independente:
+# Para compilar o executável portátil:
 npm run electron:portable
 ```
 

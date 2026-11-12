@@ -1,7 +1,7 @@
-# Executáveis pesados de terceiros e pastas de teste
+# Executáveis binários e instaladores (evita falsos-positivos de antivírus no zip do GitHub)
 AfterShoot*
 *.exe
-!culling-desktop/ai_worker.exe
+*.spec
 !culling-desktop/models/*
 
 # Builds & Release
